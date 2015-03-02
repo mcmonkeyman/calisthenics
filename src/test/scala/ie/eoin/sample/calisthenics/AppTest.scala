@@ -14,16 +14,7 @@ object AppTest {
     }
 }
 
-/**
- * Unit test for simple App.
- */
 class AppTest extends TestCase("app") {
 
-    /**
-     * Rigourous Tests :-)
-     */
     def testOK() = assertTrue(true);
-//    def testKO() = assertTrue(false);
-    
-
 }

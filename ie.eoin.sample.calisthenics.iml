@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="FacetManager">
-    <facet type="scala" name="Scala">
-      <configuration>
-        <option name="compilerLibraryLevel" value="Project" />
-        <option name="compilerLibraryName" value="Maven: org.scala-lang:scala-compiler-bundle:2.6.1" />
-        <option name="vmOptions" value="" />
-      </configuration>
-    </facet>
-  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -19,8 +10,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.6.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.8.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.nscala-time:nscala-time_2.9.1:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.joda:joda-convert:1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.scalatest:scalatest:1.2" level="project" />
   </component>
 </module>
-
