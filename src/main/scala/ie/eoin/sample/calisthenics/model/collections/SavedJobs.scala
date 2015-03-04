@@ -1,4 +1,4 @@
-package ie.eoin.sample.calisthenics.service
+package ie.eoin.sample.calisthenics.model.collections
 
 import ie.eoin.sample.calisthenics.model.{Job, JobSeeker}
 

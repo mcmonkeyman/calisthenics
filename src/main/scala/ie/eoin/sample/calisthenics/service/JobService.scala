@@ -1,6 +1,7 @@
 package ie.eoin.sample.calisthenics.service
 
 import ie.eoin.sample.calisthenics.model._
+import ie.eoin.sample.calisthenics.model.collections.PostedJobs
 
 class JobService {
 

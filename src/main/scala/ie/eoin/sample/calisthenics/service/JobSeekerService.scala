@@ -1,6 +1,7 @@
 package ie.eoin.sample.calisthenics.service
 
 import ie.eoin.sample.calisthenics.model.{Job, JobSeeker}
+import ie.eoin.sample.calisthenics.model.collections.SavedJobs
 
 class JobSeekerService {
 

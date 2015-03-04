@@ -1,4 +1,4 @@
-package ie.eoin.sample.calisthenics.service
+package ie.eoin.sample.calisthenics.model.collections
 
 import com.github.nscala_time.time.Imports._
 import ie.eoin.sample.calisthenics.model.{Employer, JobSeeker, Job, JobApplication}
