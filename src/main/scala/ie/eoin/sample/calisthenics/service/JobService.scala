@@ -4,10 +4,11 @@ import ie.eoin.sample.calisthenics.model._
 
 class JobService {
 
-  private val postedJobs = new PostedJobs(List())
+  private var postedJobs = new PostedJobs()
 
   def postJob(job: Job) = {
-    postedJobs.postJob(job)
+    postedJobs = postedJobs.postJob(job)
+    postedJobs
   }
 
   def filterByEmployer(employer: Employer) = {

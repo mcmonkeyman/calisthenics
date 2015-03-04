@@ -2,16 +2,20 @@ package ie.eoin.sample.calisthenics.service
 
 import ie.eoin.sample.calisthenics.model.{Employer, Job}
 
-class PostedJobs(var jobs: List[Job]) {
+class PostedJobs(val jobs: List[Job]) {
+
+  def this() = this(List())
 
   def postJob(job: Job) = {
-    jobs = job :: jobs
-    jobs
+    new PostedJobs(job :: jobs)
   }
 
   def filterByEmployer(employer: Employer) = {
-    jobs.filter {
+    val results = jobs.filter {
       job: Job => job.isOwner(employer)
     }
+    new PostedJobs(results)
   }
+
+  def size = jobs.size
 }

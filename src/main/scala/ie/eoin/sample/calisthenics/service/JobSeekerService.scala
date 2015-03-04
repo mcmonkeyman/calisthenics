@@ -4,10 +4,11 @@ import ie.eoin.sample.calisthenics.model.{Job, JobSeeker}
 
 class JobSeekerService {
 
-  private val savedJobs = new SavedJobs()
+  private var savedJobs = new SavedJobs()
 
   def saveJob(jobSeeker: JobSeeker, job: Job) = {
-    savedJobs.saveJob(jobSeeker, job)
+    savedJobs = savedJobs.saveJob(jobSeeker, job)
+    savedJobs
   }
 
   def getSavedJobs(jobSeeker: JobSeeker) = {

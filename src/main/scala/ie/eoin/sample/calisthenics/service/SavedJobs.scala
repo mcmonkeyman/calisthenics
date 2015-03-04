@@ -2,24 +2,23 @@ package ie.eoin.sample.calisthenics.service
 
 import ie.eoin.sample.calisthenics.model.{Job, JobSeeker}
 
-class SavedJobs {
+class SavedJobs(val savedJobs: Map[JobSeeker, List[Job]]) {
 
-  var savedJobs: Map[JobSeeker, List[Job]] = Map()
+  def this() = this(Map())
 
   def saveJob(jobSeeker: JobSeeker, job: Job) = {
-    val jobs = savedJobs.get(jobSeeker)
-
-    val newJobs = jobs match {
-      case Some(list) => job :: list
-      case None => List(job)
-    }
-
+    val newJobs = job :: getOldJobs(jobSeeker)
     val newMap: Map[JobSeeker, List[Job]] = Map(jobSeeker -> newJobs)
-    savedJobs = savedJobs ++ newMap
-    savedJobs
+    new SavedJobs(savedJobs ++ newMap)
+  }
+
+  private def getOldJobs(jobSeeker:JobSeeker) = {
+    savedJobs.get(jobSeeker).getOrElse(List())
   }
 
   def getSavedJobs(jobSeeker: JobSeeker) = {
     savedJobs.get(jobSeeker)
   }
+
+  def size = savedJobs.size
 }
