@@ -15,19 +15,19 @@ class ApplicationService {
   }
 
   def filterByDay(monthDay: MonthDay) = {
-    applications.filterByDay(monthDay)
+    applications.filter(monthDay)
   }
 
   def filterByJob(job: Job) = {
-    applications.filterByJob(job)
+    applications.filter(job)
   }
 
   def filterByJobSeeker(jobSeeker: JobSeeker) = {
-    applications.filterByJobSeeker(jobSeeker)
+    applications.filter(jobSeeker)
   }
 
   def filterByEmployer(employer: Employer) = {
-    applications.filterByEmployer(employer)
+    applications.filter(employer)
   }
 
   def filter(employer: Employer,
@@ -35,8 +35,8 @@ class ApplicationService {
              job: Option[Job] = None
               ) = {
     applications
-      .filterByEmployer(employer)
-      .filterByDay(monthDay)
-      .filterByJob(job)
+      .filter(employer)
+      .filter(monthDay)
+      .filter(job)
   }
 }

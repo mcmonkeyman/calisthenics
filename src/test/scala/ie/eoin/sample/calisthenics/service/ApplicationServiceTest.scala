@@ -22,7 +22,7 @@ class ApplicationServiceTest extends AssertionsForJUnit {
   def setup = {
     applicationService = new ApplicationService()
     employer1 = new Employer(new PersonName("employer1"))
-    employer1 = new Employer(new PersonName("employer2"))
+    employer2 = new Employer(new PersonName("employer2"))
     jReqJob = new JReqJob(employer1)
     regularJob = new Job(employer1)
     resume = new Resume(new URL("resume1"))

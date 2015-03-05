@@ -5,53 +5,43 @@ import ie.eoin.sample.calisthenics.model.{Employer, JobSeeker, Job, JobApplicati
 
 class SubmittedApplications(val submittedApplications: List[(JobApplication, MonthDay)]) {
 
-  def this() {
-    this(List())
-  }
+  def this() {this(List())}
 
   def submitApplication(application: JobApplication) = {
     new SubmittedApplications((application, MonthDay.now) :: submittedApplications)
   }
 
-  def filterByDay(day: MonthDay) = {
-    val result = submittedApplications.filter {
-      case (_, filterDay) => day == filterDay
+  def filter(filterObject: Any) = {
+    val filterFunction = filterObject match {
+      case day: MonthDay => filterByDayPartial(day)
+      case Some(day:MonthDay) => filterByDayPartial(day)
+      case job: Job => filterByJobPartial(job)
+      case Some(job:Job) => filterByJobPartial(job)
+      case jobSeeker: JobSeeker => filterByJobSeekerPartial(jobSeeker)
+      case employer: Employer => filterByEmployerPartial(employer)
+      case _ => { x:Any => true }
     }
-    new SubmittedApplications(result)
+    filterByFunction(filterFunction)
   }
 
-  def filterByDay(dayOption: Option[MonthDay]): SubmittedApplications = {
-    dayOption match {
-      case Some(day) => filterByDay(day)
-      case _ => this
-    }
+  def filterByDayPartial(day: MonthDay): (Object) => Boolean = {
+    case (_, filterDay: MonthDay) => day == filterDay
   }
 
-  def filterByJob(job: Job) = {
-    val result = submittedApplications.filter {
-      case (jobApplication, _) => jobApplication.isForJob(job)
-    }
-    new SubmittedApplications(result)
+  def filterByJobPartial(job:Job): (Object => Boolean) = {
+    case (jobApplication: JobApplication, _) => jobApplication.isForJob(job)
   }
 
-  def filterByJob(jobOption: Option[Job]): SubmittedApplications = {
-    jobOption match {
-      case Some(job) => filterByJob(job)
-      case _ => this
-    }
+  def filterByJobSeekerPartial(jobSeeker:JobSeeker): (Object => Boolean) = {
+    case (jobApplication: JobApplication, _) => jobApplication.isForJobSeeker(jobSeeker)
   }
 
-  def filterByJobSeeker(jobSeeker: JobSeeker) = {
-    val result = submittedApplications.filter {
-      case (jobApplication, _) => jobApplication.isForJobSeeker(jobSeeker)
-    }
-    new SubmittedApplications(result)
+  def filterByEmployerPartial(employer:Employer): (Object => Boolean) = {
+    case (jobApplication: JobApplication, _) => jobApplication.isForEmployer(employer)
   }
 
-  def filterByEmployer(employer: Employer) = {
-    val result = submittedApplications.filter {
-      case (jobApplication, _) => jobApplication.isForEmployer(employer)
-    }
+  def filterByFunction(filterFunction: (Object) => Boolean) = {
+    val result = submittedApplications filter filterFunction
     new SubmittedApplications(result)
   }
 
