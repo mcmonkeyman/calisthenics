@@ -3,12 +3,12 @@ package ie.eoin.sample.calisthenics.model.collections
 import com.github.nscala_time.time.Imports._
 import ie.eoin.sample.calisthenics.model.{Employer, JobSeeker, Job, JobApplication}
 
-class SubmittedApplications(val submittedApplications: List[(JobApplication, MonthDay)]) {
+class ApplicationsCollection(val submittedApplications: List[(JobApplication, MonthDay)]) {
 
   def this() {this(List())}
 
   def submitApplication(application: JobApplication) = {
-    new SubmittedApplications((application, MonthDay.now) :: submittedApplications)
+    new ApplicationsCollection((application, MonthDay.now) :: submittedApplications)
   }
 
   def filter(filterObject: Any) = {
@@ -21,7 +21,7 @@ class SubmittedApplications(val submittedApplications: List[(JobApplication, Mon
       case employer: Employer => filterByEmployerPartial(employer)
       case _ => { x:Any => true }
     }
-    filterByFunction(filterFunction)
+    returnFilteredApplications(filterFunction)
   }
 
   def filterByDayPartial(day: MonthDay): (Object) => Boolean = {
@@ -40,9 +40,9 @@ class SubmittedApplications(val submittedApplications: List[(JobApplication, Mon
     case (jobApplication: JobApplication, _) => jobApplication.isForEmployer(employer)
   }
 
-  def filterByFunction(filterFunction: (Object) => Boolean) = {
+  def returnFilteredApplications(filterFunction: (Object) => Boolean) = {
     val result = submittedApplications filter filterFunction
-    new SubmittedApplications(result)
+    new ApplicationsCollection(result)
   }
 
   def size = submittedApplications.size
