@@ -2,11 +2,11 @@ package ie.eoin.sample.calisthenics.service
 
 import com.github.nscala_time.time.Imports._
 import ie.eoin.sample.calisthenics.model._
-import ie.eoin.sample.calisthenics.model.collections.SubmittedApplications
+import ie.eoin.sample.calisthenics.model.collections.ApplicationsCollection
 
 class ApplicationService {
 
-  private var applications = new SubmittedApplications()
+  private var applications = new ApplicationsCollection()
 
   def submitApplication(job: Job, jobSeeker: JobSeeker, resume: Option[Resume]) = {
     val application = new JobApplication(job, jobSeeker, resume)
