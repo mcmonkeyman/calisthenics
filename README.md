@@ -1,4 +1,4 @@
 # Calisthenics Exercise
-An exercise in structing a sample application, for usage see the tests.
+An exercise in structuring a sample application, for usage see the tests.
 
 
